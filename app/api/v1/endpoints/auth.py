@@ -14,7 +14,7 @@ from app.services.redis_service import RedisService
 
 router = APIRouter()
 
-@router.post("/register", response_model=UserResponse, status_code=status.HTTP_217_CREATED, status_code_override=status.HTTP_201_CREATED)
+@router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def register_user(
     user_in: UserCreate, 
     db: Session = Depends(deps.get_db)

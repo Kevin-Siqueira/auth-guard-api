@@ -11,7 +11,7 @@ API RESTful completa de autenticação, autorização baseada em papéis (RBAC) 
 
 ---
 
-### 🚀 Funcionalidades Principais
+## 🚀 Funcionalidades Principais
 
 - **Autenticação JWT Segura:** Emissão de Access Tokens (15 min) e Refresh Tokens (7 dias).
 - **Proteção contra Reuso (Token Blacklist):** Endpoint de `/logout` que invalida instantaneamente o Access Token no Redis.
@@ -22,7 +22,7 @@ API RESTful completa de autenticação, autorização baseada em papéis (RBAC) 
 
 ---
 
-### 🛠️ Arquitetura do Projeto
+## 🛠️ Arquitetura do Projeto
 
 ```text
 auth-guard-api/
