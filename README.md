@@ -34,3 +34,28 @@ auth-guard-api/
 │   └── services/     # Gestão da Blacklist de Tokens com Redis
 ├── tests/            # Testes automatizados com pytest
 └── docker-compose.yml
+```
+
+⚡ Como Executar o Projeto
+Clonar o repositório:
+
+```Bash
+git clone [https://github.com/Kevin-Siqueira/auth-guard-api.git](https://github.com/Kevin-Siqueira/auth-guard-api.git)
+cd auth-guard-api
+```
+Subir com Docker Compose:
+
+```Bash
+docker-compose up --build
+```
+Aceder à Documentação Interativa:
+
+Swagger UI: http://localhost:8000/docs
+
+ReDoc: http://localhost:8000/redoc
+
+Executar Testes Automatizados:
+
+```Bash
+pytest -v
+```
