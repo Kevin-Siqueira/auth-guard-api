@@ -1,19 +1,24 @@
 from datetime import datetime, timedelta, timezone
 from typing import Any, Union
+import bcrypt
 from jose import jwt
-from passlib.context import CryptContext
 from app.core.config import settings
 
-# Contexto de encriptação com bcrypt
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+def _truncate_password(password: str) -> bytes:
+    """Converte para bytes e trunca em 72 bytes para cumprir o limite do bcrypt."""
+    return password.encode("utf-8")[:72]
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verifica se a palavra-passe em texto limpo coincide com o hash salvo."""
-    return pwd_context.verify(plain_password, hashed_password)
+    """Verifica se a palavra-passe em texto limpo coincide com o hash gravado."""
+    password_bytes = _truncate_password(plain_password)
+    hashed_bytes = hashed_password.encode("utf-8")
+    return bcrypt.checkpw(password_bytes, hashed_bytes)
 
 def get_password_hash(password: str) -> str:
     """Gera o hash Bcrypt da palavra-passe."""
-    return pwd_context.hash(password)
+    password_bytes = _truncate_password(password)
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password_bytes, salt).decode("utf-8")
 
 def create_access_token(subject: Union[str, Any], expires_delta: timedelta = None) -> str:
     """Cria um Access Token JWT com validade curta."""
